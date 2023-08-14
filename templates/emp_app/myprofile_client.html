@@ -1,0 +1,40 @@
+{% extends 'core/layout.html' %}
+{% load static %}
+
+{% block body %}
+<div class="ps-blog ps-blog--list">
+    <div class="container">
+        <div class="ps-blog__header">
+            
+            <div class="ps-block--about-author">
+                <div class="ps-block__header">
+                    <h4>About {{ profile.user_id_fk }}</h4>                                    
+                </div>
+
+
+
+                <div class="ps-block__image"><img src="{{profile.get_client_image_url}}" alt=""></div>
+                <div class="ps-block__content">
+                    <h5></h5>
+                    <p> <br> <strong>Compnay Name @ </strong>{{profile.company_name}}<br> <br> <strong>Company Desctiption : </strong>{{profile.company_description}} <br><br> <strong>No Of Employees : </strong>{{profile.NoOfEmployees}} <br> <br><strong>Qualification Description :</strong> {{profile.qualification}} <br><br> <strong>Location : </strong>{{profile.location}} </p>
+                    <ul class="ps-list--social simple">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+          
+        
+        
+    </div>
+
+    
+    
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% load static %}
+
+<div class="ps-section ps-home-hire-freelancer">
+    <div class="container">
+      <div class="ps-section__header">
+        <h3>Hire Developer & <br/> Find Developer Jobs Online</h3>
+        
+      </div>
+    </div>
+    
+    <div class="ps-section__content">
+      {% for Category in category_color_display %}  
+      <div class="ps-block--project">
+        <div class="ps-block__thumbnail"><img src="{{Category.get_category_color_image_url}}" alt=""></div>
+        <div class="ps-block__container">
+          <div class="ps-block__content">
+            <h4>{{Category.type}}</h4><a class="ps-btn ps-btn--outline" href="{% url 'core:category_post_job' Category.id %}">Post a Project Like This</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+  </div>

@@ -1,0 +1,176 @@
+{% load static %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent A Coder</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;display=swap%7cMontserrat:400,600,700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/plugins/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/bootstrap4/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/owl-carousel/assets/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/jquery-ui/jquery-ui.min.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/select2/dist/css/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static '/fonts/athena/custom.css' %}">
+    
+    <link rel="stylesheet" href="{% static '/css/custom.css' %}">
+
+  
+</head>
+<body>
+    <header class="header header--2 dark" style="background-color: azure;" data-sticky="true">
+        <div class="header__left"><a class="ps-logo" href="{% url 'core:index' %}"><img src="{% static '/img/raclogo1.png' %}" alt="123" ></a><a class="header__link" href="{% url 'developer_app:browse_job' %}" style="color: lightseagreen;"><i class="fa-duotone fa-books"></i> Browers Jobs</a></div>
+        <div class="header__right" >
+          <ul class="menu">
+            <li class="menu-item-has-children"><a href="{% url 'core:index' %}" style="color: lightseagreen;">Home</a><span class="sub-toggle"></span>
+            </li>
+            <li><a href="{% url 'developer_app:developer_index' %}" style="color: lightseagreen;">Freelancers</a></li>
+            <li><a href="{% url 'emp_app:emp_index' %}" style="color: lightseagreen;">Employers</a></li>
+            <li><a href="{% url 'services:about_us' %}" style="color: lightseagreen;">About Us</a></li>
+            <li><a href="{% url 'services:services_index' %}" style="color: lightseagreen;">Services</a></li>
+        
+            <li><a href="{% url 'core:contact' %}" style="color: lightseagreen;">Contact</a></li>
+            
+          </ul>
+          <div class="header__actions"><a class="ps-btn ps-btn--outline" href="{% url 'signup_user:login_user' %}" style="color: lightseagreen;">Login</a><a class="ps-btn" href="{% url 'signup_user:signup_gen' %}">Sign Up</a></div>
+        </div>
+      </header>
+    <header class="header header--mobile" data-sticky="false">
+        <div class="header__content">
+          <div class="header__left"><a class="ps-toggle--sidebar" href="#navigation-mobile"><i class="fa fa-bars"></i></a></div>
+          <div class="header__center"><a class="ps-logo" href="#"><img src="{% static '/img/logo-dark.png'%}" alt=""></a></div>
+          <div class="header__right">
+            <div class="header__actions"><a class="ps-search-btn" href="#"><i class="fa fa-search"></i></a></div>
+          </div>
+        </div>
+    </header>
+
+    <div class="ps-panel--sidebar" id="navigation-mobile">
+        <div class="ps-panel__header">
+          <h3>Menu</h3>
+        </div>
+        <div class="ps-panel__content">
+          <ul class="menu--mobile">
+            <li ><a href="{% url 'core:index' %}">Home</a><span class="sub-toggle"></span>
+            </li>
+            <li><a href="{% url 'developer_app:developer_index' %}">Freelancers</a></li>
+            <li><a href="{% url 'emp_app:emp_index' %}">Employers</a></li>
+            <li><a href="{% url 'developer_app:browse_job' %}">Browse Job</a></li>
+            <li><a href="{% url 'services:about_us' %}">About Us</a></li>
+            <li><a href="{% url 'services:services_index' %}">Services</a></li>
+            <li><a href="{% url 'services:mail' %}">Contact</a></li>
+    
+            {% if user.is_authenticated %}
+            <li class="menu-item-has-children"><a href="#">Profile</a><span class="sub-toggle"></span>
+              <ul class="sub-menu">
+                          
+                  {% ifequal user.user_type 'client' %}
+                    <li><a href="{% url 'emp_app:myprofile_client' %}">My Profile</a></li>
+                    <li><a href="{% url 'emp_app:project_request' %}">Project Request</a></li>    
+                    <li><a href="{% url 'emp_app:alloted_project_all' %}">Alloted Project</a></li>
+                  
+                  {% else %}
+                  
+                    <li><a href="{% url 'developer_app:myprofile_dev' %}">My Profile</a></li>
+                    <li><a href="{% url 'developer_app:my_applied_request' %}">My Applied Request</a></li>
+                    <li><a href="{% url 'developer_app:my_alloted_project' %}">Projects Alloted</a></li>
+                  
+                {% endifequal %}
+              </ul>
+            </li>
+                {% endif %}
+    
+              
+    
+            <li class="menu-item-has-children"><a href="#">Reports</a><span class="sub-toggle"></span>
+              <ul class="sub-menu">
+                    <li><a href="{% url 'services:topclient' %}">Top Clients</a></li>
+                    <li><a href="{% url 'services:topdeveloper' %}">Top Developers</a></li>    
+                    <li><a href="{% url 'services:topcategory' %}">Top Categories</a></li>
+              </ul>
+            </li>
+            
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'signup_user:logout_user' %}">Logout</a></li>
+            {% else %}
+            <li class="menu-item-has-children"><a href="#">Login</a><span class="sub-toggle"></span>
+              <ul class="sub-menu">
+                    <li><a href="{% url 'signup_user:login_user' %}">Login</a></li>
+                    <li><a href="{% url 'signup_user:signup_gen' %}">Sign Up</a></li>
+              </ul>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+
+<div  style="padding-top: 160px;" class="ps-page ps-page--account bg--cover" id="signup-selection" data-background="{% static 'img/bg/account-selection.jpg' %}">
+    <div class="ps-page__content">
+        <form class="ps-form--signup-selection bg--gradient" action="." method="post">
+           {% csrf_token %}
+            <div class="ps-form__header">
+                <h3>Sign up for free.</h3>
+                <h5>Join the million of people <br> <strong>using Rent a Coder</strong> </h5>
+                <p>I want to</p>
+            </div>
+            <div class="ps-form__content">
+               <h4>
+                {% for fm in form %}
+                
+                <div class="form-group mb-3">
+                    {{ fm.label_tag }} {{ fm }} 
+                    <small class="text-danger"> {{ fm.errors|striptags }}</small><br>
+                    <h4>We are delighted and excited about working as a team starting from today...</h4>
+                   
+                </div>
+                {% endfor %}
+                 </h4>
+            </div>
+            <div class="ps-form__footer">
+                <button class="ps-btn ps-btn--black", type="submit">Next</button>
+            </div>
+        </form>
+    </div>
+    <div class="ps-page__footer">
+        
+        <p>RAC © 2023 Copyright by RAC Co,  All Rights Reserved. Develpoed by Dhruti , Mira , Vishwa</p>
+    </div>
+</div>
+<div id="back2top"><i class="pe-7s-angle-up"></i></div>
+<div class="ps-site-overlay"></div>
+<div id="loader-wrapper">
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+</div>
+<div class="ps-search" id="site-search"><a class="ps-btn--close" href="#"></a>
+    <div class="ps-search__content">
+        <form class="ps-form--primary-search" action="http://nouthemes.net/html/athena/do_action" method="post">
+            <input class="form-control" type="text" placeholder="Search for...">
+            <button><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+</div>
+
+
+</script>
+
+     <!-- Plugins-->
+     <script src="{% static 'plugins/jquery-1.12.4.min.js' %}"></script>
+     <script src="{% static 'plugins/owl-carousel/owl.carousel.min.js' %}"></script>
+     <script src="{% static 'plugins/bootstrap4/js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'plugins/imagesloaded.pkgd.min.js' %}"></script>
+     <script src="{% static 'plugins/masonry.pkgd.min.js'%}"></script>
+     <script src="{% static 'plugins/jquery-bar-rating/dist/jquery.barrating.min.js' %}"></script>
+     <script src="{% static 'plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+     <script src="{% static 'plugins/select2/dist/js/select2.full.min.js' %}"></script>
+     <script src="{% static 'plugins/anime.min.js' %}"></script>
+     <script src="{% static 'plugins/wow.min.js' %}"></script>
+     <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
+{% endblock %}

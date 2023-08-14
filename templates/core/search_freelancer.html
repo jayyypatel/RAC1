@@ -1,0 +1,81 @@
+{% extends 'core/layout.html' %}
+{%load static%}
+
+{% block body %}
+
+<div style="padding-top: 90px;" class="ps-page">
+    <div class="ps-section--top bg--cover" data-background="{% static 'img/bg/pages/brow-employers.jpg' %}">
+        <div class="container">
+            <div class="ps-section__header">
+                <p>Search <br /> Freelancer</p>
+            </div>
+            <div class="ps-section__content">
+                <form class="ps-form--home-find-job ps-form--top" action="{% url 'core:search_freelancer' %}"
+                    method="GET">
+                    <h1>Search Freelancer on R.A.C </h1>
+                    <h5>Where the world meets startups. Millions of small businesses use <br /> Freelancer to turn their
+                        ideas into reality</h5>
+                    <div class="form-group"><i class="fa fa fa-search"></i>
+                        <input class="form-control" type="text" name='q' placeholder="Enter first name...">
+                        <button class="ps-btn ps-btn--gradient" type="submit">Find Freelancer</button>
+                    </div>
+                    <p>Update the latest jobs and announcements from R.A.C.<a href="#"> Join us today</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="ps-section--sidebar ps-listing">
+        <div class="container">
+            <div class="ps-section__container">
+                <div class="ps-section__content">
+                    
+                    <div class="ps-section__items">
+                        <h4 class="ps-heading--2 mb-40">{{r_count}} results</h4>
+                        {% for freelancer in results %} 
+                    <div class="ps-freelancer ">
+                        <div class="ps-freelancer__thumbnail"><img src="{{freelancer.get_developer_image_url}}" alt=""></div>
+                        <div class="ps-freelancer__content">
+                            <figure>
+                                <figcaption>{{freelancer.user_id_fk}}</figcaption>
+                                <p>{{freelancer.location}} </p><a class="ps-btn ps-btn--outline" href="{%url 'developer_app:pr_dev_profile' freelancer.id %}"> see Profile</a>
+                            </figure>
+                            <p><strong>{{freelancer.your_skill}} . {{freelancer.work_experience}} . {{freelancer.working_hours}}
+                                    </strong></p>
+                            
+                        </div>
+                    </div>
+                    {% endfor %}
+                                            
+                        
+                    </div>
+                    
+                </div>
+                <div class="ps-section__sidebar">
+                    <div class="widget widget_profile widget_find-employers">
+                        <h3 class="widget-title">Find a Employers</h3>
+                        <ul class="ps-list">
+                            <li><a href="#">Browse all</a></li>
+                            <li><a href="#">Browse with My skills</a></li>
+                            <li><a href="#">Browse with top</a></li>
+                            <li><a href="#">Browse Local jobs</a></li>
+                            <li><a href="#">Browse Categories</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget widget_profile widget_feature-members">
+                        <h3 class="widget-title">Featured Members</h3>
+                        <figure>
+                        {% for vf in feature_members %}
+                        <div class="ps-block--company-tiny"><a class="ps-block__thumbnail" href="{% url 'emp_app:pr_client_profile' vf.id %}"><img
+                                    src="{{vf.get_client_image_url}}" alt=""></a><a class="ps-block__title"
+                                href="{% url 'emp_app:pr_client_profile' vf.id %}"> {{vf.company_name}}</a></div>
+                        {% endfor %}
+                           
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

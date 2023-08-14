@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			table {
+				border-collapse: collapse;
+                align-self: center;
+                margin-left: 120px;
+			}
+			th {
+				background-color:rgb(80, 61, 253);
+				Color:white;
+			}
+			th, td {
+				width:220px;
+				text-align:center;
+				border:1px solid black;
+				padding:5px
+			
+			}
+			.geeks {
+				border-right:hidden;
+			}
+			.gfg {
+				border-collapse:separate;
+				border-spacing:0 15px;
+			}
+			h1 {
+				color:rgb(80, 63, 241);
+			}
+            @page {
+            size: Letter;
+            margin: 0in 0.44in 0.2in 0.44in;
+            }
+		</style>
+	</head>
+	<body>
+		<center>
+		<h1>Rent A Coder</h1>
+		<h2>{{ msg }}</h2>
+		<h4>Date : - {{date}}</h4>
+        
+		<table align="center">
+			<tr>
+				
+				<th>Category Name</th>
+				
+				<th>Posted Projects</th>
+			</tr>
+		</table>
+		<table class = "gfg">
+            
+			{% for i in top_5 %}
+            
+			<tr>
+				<td class = "geeks">{{i.category_id_fk__type}}</td>
+            
+				
+				
+				<td>{{ i.cat_count }}</td>
+			</tr>
+			
+            {% endfor %}
+		</table>
+    
+		</center>
+	</body>
+</html>

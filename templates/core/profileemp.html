@@ -1,0 +1,44 @@
+{% extends 'core/layout.html' %}
+{% load static %}
+
+{% block body %}
+
+<div style="padding-top: 190px;"  class="ps-page--signup" id="signup-freelancer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                <div style="padding-top: 180px;" class="ps-page__left"><img src="{% static 'img/pages/account/signup-freelancer.png' %}" alt="">
+                    <p>Already user?<a href="signin-freelancer.html"> Sign in</a></p>
+                </div>
+            </div>
+            <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                <form class="ps-form--signup-freelancer"
+                    action="." method="POST" enctype='multipart/form-data'>
+                    <div class="ps-form__header">
+                        <h2>Profile for Employee.</h2>
+                        {% csrf_token %}
+
+                    </div>
+                    <div class="ps-form__content">
+                        {% for fm in form %}
+                        <div class="form-group">
+                            {{ fm.label_tag }} {{ fm }} <small class="text-danger">{{fm.errors|striptags}}</small>
+                        </div>
+                        
+                        {% endfor %}
+                        
+                        <p><i class="fa fa-shield"></i> Your passwords at Athena are encrypted and secured</p>
+                        
+                    </div>
+                    <div class="ps-form__footer">
+                        <button class="ps-btn ps-btn--fullwidth ps-btn--gradient">Sign Up</button>
+                        <p>By registering you confirm that you accept the <br><a href="#"> Terms and Conditions</a>
+                            and<a href="#"> Privacy Policy</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

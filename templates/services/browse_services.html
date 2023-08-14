@@ -1,0 +1,71 @@
+{% load static %}
+
+{% block body %}
+
+<div class="ps-section--2 ps-brower-services">
+    <div class="container">
+      <div class="ps-section__header">
+        <h5>Brower Services</h5>
+        <p>Browse our directory of service providers, or <a href="{% url 'core:post_job' %}">post a request </a> and have
+          provider respond to you directly. If you'd like to offer your own services, sign up today.</p>
+      </div>
+      <div class="ps-section__content">
+        <div class="row">
+          {% for cat in category_display %}
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 " >
+            <div class="ps-block--service-3" >
+              <div class="ps-block__thumbnail"  ><img style="background: url();" src="{{cat.get_category_color_image_url}}" alt="" style="height: 220px; width: 220px;" ></div>
+              <div class="ps-block__content">{{cat.type}}
+                <p>{{cat.description}}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ps-section--2 ps-brower-services benifits">
+    <div class="container">
+      <div class="ps-section__header">
+        <h5>BENEFITS</h5>
+        <p>There are Four major types of benefits offered by Rent A Coder.</p>
+      </div>
+      <div class="ps-section__content">
+        <div class="row">
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 ">
+            <div class="ps-block--benifit">
+              <h5>Code Replay</h5>
+              <p>It is a line-by-line coding by the candidates. This helps to understand code cleanliness, memory optimization, accuracy, and logic.
+                Code replay helps in identifying good programmers from the average ones.</p>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 ">
+            <div class="ps-block--benifit">
+              <h5>Cost Efficiency</h5>
+              <p>Outsourcing your app development is the best way to keep business costs down. In fact, a report by Deloitte
+                 reveals that cost efficiency is the major reason why organizations consider outsourcing.</p>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 ">
+            <div class="ps-block--benifit">
+              <h5>Analyzing the Candidates</h5>
+              <p>Once you have a list of ideal candidates, analyze them to hire the best one for your project. 
+                Here are some of the things you must consider while analyzing.
+              </p>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 ">
+            <div class="ps-block--benifit">
+              <h5>Skilled Talent and Better Efficiency</h5>
+              <p>Outsourcing not only helps in cost-cutting but also achieving better results that might not be possible 
+                with in-house teams.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

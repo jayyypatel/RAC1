@@ -1,0 +1,41 @@
+{% extends 'core/layout.html' %}
+{% load static %}
+
+{% block body %}
+
+<div style="padding-top: 90px;" class="ps-section--sidebar ps-listing">
+    <div class="container">
+
+        <form class="ps-form--signin" action="." method="post">
+            {% csrf_token %}
+            
+              
+        
+
+        <div class="ps-section__container">
+            <div class="ps-section__content">
+                
+                <div class="ps-section__items">
+                    <div class="ps-form__content">
+                        {% for fm in form %}
+                        <div class="form-group">
+                          {{ fm.label_tag }} {{ fm }}
+                          <small class="text-danger"> {{ fm.errors|striptags }}</small>
+                        </div>
+                        {% endfor %}
+                      
+                
+                        </div>
+                
+                    
+                </div>
+                <button class="ps-btn ps-btn--gradient" type="submit">Apply Now</button>
+
+            </form>
+                
+            
+        </div>
+    </div>
+</div>
+
+{% endblock %}

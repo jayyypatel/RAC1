@@ -1,0 +1,27 @@
+{% load static %}
+
+{% block body %}
+
+<div style="padding-top: 90px;" class="ps-page">
+    <div class="ps-section--top bg--cover" style="background-image: url('/static/img/bg/pages/brow-employers.jpg ');" >
+        <div class="container">
+            <div class="ps-section__header">
+                <p>BROWSE <br /> Developers</p>
+            </div>
+            <div class="ps-section__content">
+                <form class="ps-form--home-find-job ps-form--top" action="{% url 'core:search_freelancer' %}"
+                    method="GET">
+                    <h1>Find Developers on R.A.C </h1>
+                    <h5>Where the world meets startups. Millions of small businesses use <br /> Freelancer to turn their
+                        ideas into reality</h5>
+                    <div class="form-group"><i class="fa fa fa-search"></i>
+                        <input class="form-control" type="text" name='q' placeholder="Enter freelancer...">
+                        <button class="ps-btn ps-btn--gradient">Find Job</button>
+                    </div>
+                    <p>Update the latest jobs and announcements from R.A.C. <a href="{% url 'signup_user:signup_gen' %}"> Join us today</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}

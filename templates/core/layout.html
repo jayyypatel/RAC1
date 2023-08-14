@@ -1,0 +1,448 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rent A Coder</title>
+
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;display=swap%7cMontserrat:400,600,700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static '/plugins/font-awesome/css/font-awesome.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static '/plugins/bootstrap4/css/bootstrap.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static '/plugins/owl-carousel/assets/owl.carousel.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static '/plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static '/plugins/jquery-ui/jquery-ui.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static '/plugins/select2/dist/css/select2.min.css' %}"
+    />
+    <link rel="stylesheet" href="{% static '/fonts/athena/custom.css' %}" />
+    <!-- <link rel="stylesheet" href="{% static '/css/style.css' %}"> -->
+    <link rel="stylesheet" href="{% static '/css/custom.css' %}" />
+  </head>
+
+  <body>
+    <style></style>
+    <header class="header header--2 dark" data-sticky="true">
+      <div class="header__left">
+        <a class="ps-logo" href="{% url 'core:index' %}"
+          ><img src="{% static '/img/raclogo1.png' %}" alt="" /></a
+        ><a class="header__link" href="{% url 'developer_app:browse_job' %}"
+          ><i class="fal fa-books"></i> Browers Jobs</a
+        >
+        <!--developer_app:browse_job-->
+      </div>
+      <div class="header__right">
+        <ul class="menu">
+          <li class="menu-item-has-children">
+            <a href="{% url 'core:index' %}">Home</a
+            ><span class="sub-toggle"></span>
+          </li>
+          <li>
+            <a href="{% url 'developer_app:developer_index' %}">Developer</a>
+          </li>
+          <li><a href="{% url 'emp_app:emp_index' %}">Client</a></li>
+          <li><a href="{% url 'services:about_us' %}">About Us</a></li>
+          <li><a href="{% url 'services:services_index' %}">Services</a></li>
+
+          <li><a href="{% url 'services:mail' %}">Contact</a></li>
+
+          {% if user.is_authenticated %}
+            <li class="menu-item-has-children">
+              <a href="#">Reports</a><span class="sub-toggle"></span>
+              <ul class="sub-menu">
+                <li><a href="{% url 'services:topclient' %}">Top Clients</a></li>
+                <li>
+                  <a href="{% url 'services:topdeveloper' %}">Top Developers</a>
+                </li>
+                <li>
+                  <a href="{% url 'services:topcategory' %}">Top Categories</a>
+                </li>
+              </ul>
+            </li>
+          <li class="menu-item-has-children">
+            <a href="#">Profile</a><span class="sub-toggle"></span>
+            <ul class="sub-menu">
+              {% ifequal user.user_type 'client' %}
+              <li>
+                <a href="{% url 'emp_app:myprofile_client' %}">My Profile</a>
+              </li>
+              <li>
+                <a href="{% url 'emp_app:project_request' %}"
+                  >Project Request</a
+                >
+              </li>
+              <li>
+                <a href="{% url 'emp_app:alloted_project_all' %}"
+                  >Alloted Project</a
+                >
+              </li>
+              <li>
+                <a href="{% url 'services:pdf_all_project_client' %}"
+                  >All Projects Reports
+                </a>
+              </li>
+
+              {% else %}
+
+              <li>
+                <a href="{% url 'developer_app:myprofile_dev' %}">My Profile</a>
+              </li>
+              <li>
+                <a href="{% url 'developer_app:my_applied_request' %}"
+                  >My Applied Request</a
+                >
+              </li>
+              <li>
+                <a href="{% url 'developer_app:my_alloted_project' %}"
+                  >Projects Alloted</a
+                >
+              </li>
+              <li>
+                <a href="{% url 'services:pdf_all_project_developer' %}"
+                  >All Received Projects Reports
+                </a>
+              </li>
+
+              {% endifequal %}
+            </ul>
+          </li>
+          {% endif %}
+
+          <!-- <li class="menu-item-has-children">
+            <a href="#">Reports</a><span class="sub-toggle"></span>
+            <ul class="sub-menu">
+              <li><a href="{% url 'services:topclient' %}">Top Clients</a></li>
+              <li>
+                <a href="{% url 'services:topdeveloper' %}">Top Developers</a>
+              </li>
+              <li>
+                <a href="{% url 'services:topcategory' %}">Top Categories</a>
+              </li>
+            </ul>
+          </li> -->
+        </ul>
+
+        {% if user.is_authenticated %}
+        <a
+          class="ps-btn"
+          style="margin-left: 20px; margin-right: 30px"
+          href="{% url 'signup_user:logout_user' %}"
+          >logout</a
+        >
+        {% else %}
+        <div class="header__actions">
+          <a
+            class="ps-btn ps-btn--outline"
+            href="{% url 'signup_user:login_user' %}"
+            >Login</a
+          >
+          <a
+            class="ps-btn"
+            style="margin-right: 20px"
+            href="{% url 'signup_user:signup_gen' %}"
+            >Sign Up</a
+          >
+        </div>
+        {% endif %}
+      </div>
+    </header>
+    <!--this header is for moblie view-->
+
+    <header class="header header--mobile" data-sticky="false">
+      <div class="header__content">
+        <div class="header__left">
+          <a class="ps-toggle--sidebar" href="#navigation-mobile"
+            ><i class="fa fa-bars"></i
+          ></a>
+        </div>
+        <div class="header__center">
+          <a class="ps-logo" href="{% url 'core:index' %}"
+            ><img src="{% static '/img/raclogo1.png' %}" alt=""
+          /></a>
+        </div>
+        <div class="header__right">
+          <!-- <div class="header__actions"><a class="ps-search-btn" href="#"><i class="fa fa-search"></i></a></div> -->
+        </div>
+      </div>
+    </header>
+
+    <!-- Responsive header-->
+    <div class="ps-panel--sidebar" id="navigation-mobile">
+      <div class="ps-panel__header">
+        <h3>Menu</h3>
+      </div>
+      <div class="ps-panel__content">
+        <ul class="menu--mobile">
+          <li>
+            <a href="{% url 'core:index' %}">Home</a
+            ><span class="sub-toggle"></span>
+          </li>
+          <li>
+            <a href="{% url 'developer_app:developer_index' %}">Freelancers</a>
+          </li>
+          <li><a href="{% url 'emp_app:emp_index' %}">Employers</a></li>
+          <li><a href="{% url 'developer_app:browse_job' %}">Browse Job</a></li>
+          <li><a href="{% url 'services:about_us' %}">About Us</a></li>
+          <li><a href="{% url 'services:services_index' %}">Services</a></li>
+          <li><a href="{% url 'services:mail' %}">Contact</a></li>
+
+          {% if user.is_authenticated %}
+          <li class="menu-item-has-children">
+            <a href="#">Profile</a><span class="sub-toggle"></span>
+            <ul class="sub-menu">
+              {% ifequal user.user_type 'client' %}
+              <li>
+                <a href="{% url 'emp_app:myprofile_client' %}">My Profile</a>
+              </li>
+              <li>
+                <a href="{% url 'emp_app:project_request' %}"
+                  >Project Request</a
+                >
+              </li>
+              <li>
+                <a href="{% url 'emp_app:alloted_project_all' %}"
+                  >Alloted Project</a
+                >
+              </li>
+
+              {% else %}
+
+              <li>
+                <a href="{% url 'developer_app:myprofile_dev' %}">My Profile</a>
+              </li>
+              <li>
+                <a href="{% url 'developer_app:my_applied_request' %}"
+                  >My Applied Request</a
+                >
+              </li>
+              <li>
+                <a href="{% url 'developer_app:my_alloted_project' %}"
+                  >Projects Alloted</a
+                >
+              </li>
+
+              {% endifequal %}
+            </ul>
+          </li>
+          {% endif %}
+
+          <li class="menu-item-has-children">
+            <a href="#">Reports</a><span class="sub-toggle"></span>
+            <ul class="sub-menu">
+              <li><a href="{% url 'services:topclient' %}">Top Clients</a></li>
+              <li>
+                <a href="{% url 'services:topdeveloper' %}">Top Developers</a>
+              </li>
+              <li>
+                <a href="{% url 'services:topcategory' %}">Top Categories</a>
+              </li>
+            </ul>
+          </li>
+
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'signup_user:logout_user' %}">Logout</a></li>
+          {% else %}
+          <li class="menu-item-has-children">
+            <a href="#">Login</a><span class="sub-toggle"></span>
+            <ul class="sub-menu">
+              <li><a href="{% url 'signup_user:login_user' %}">Login</a></li>
+              <li><a href="{% url 'signup_user:signup_gen' %}">Sign Up</a></li>
+            </ul>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+
+    {% block body %} {% endblock body %}
+
+    <!-- start banner block -->
+    {% block banner %} {% endblock banner %}
+    <!-- /end banner block -->
+
+    <!-- start findjob block -->
+    {% block findjob %} {% endblock findjob %}
+    <!-- /end findjob block -->
+
+    <!-- start benefits block -->
+    {% block benefits %} {% endblock benefits %}
+    <!-- /end benefits block -->
+
+    <!-- start services block -->
+    {% block services %} {% endblock services %}
+    <!-- /end services block -->
+
+    <!-- start section_hire_freelancer block -->
+    {% block section_hire_freelancer %} {% endblock section_hire_freelancer %}
+    <!-- /end section_hire_freelancer block -->
+
+    <!-- start process block -->
+    {% block process %} {% endblock process %}
+    <!-- /end process block -->
+
+    <!-- start job_category block -->
+    {% block job_category %} {% endblock job_category %}
+    <!-- /end job_category block -->
+
+    <!-- start join_us block -->
+    {% block join_us %} {% endblock join_us %}
+    <!-- /end job_category block -->
+
+    <!-- developer_app -->
+
+    <!-- start developer_search block -->
+    {% block developer_search %} {% endblock developer_search %}
+    <!-- end developer_search block -->
+
+    <!-- start developer_filter block -->
+    {% block developer_job_filter %} {% endblock developer_job_filter %}
+    <!-- end developer_filter block -->
+
+    <!-- emp_app -->
+
+    <!-- start emp_search block -->
+    {% block emp_search %} {% endblock emp_search %}
+    <!-- end emp_search block -->
+
+    <!-- start emp_filter block -->
+    {% block emp_job_filter %} {% endblock emp_job_filter %}
+    <!-- end emp_filter block -->
+
+    <!-- services -->
+
+    <!-- start services_info block -->
+    {% block services_info %} {% endblock services_info %}
+    <!-- end services_info block -->
+
+    <!-- start browse_services block -->
+    {% block browse_services %} {% endblock browse_services %}
+    <!-- end browse_services block -->
+
+    <!-- start services_estimation block -->
+    {% block services_estimation %} {% endblock services_estimation %}
+    <!-- end services_estimation block -->
+
+    <!-- start services_request block -->
+    {% block services_request %} {% endblock services_request %}
+    <!-- end services_request block -->
+
+    <!-- start about_us block -->
+    {% block about_us %} {% endblock about_us %}
+    <!-- end about_us block -->
+
+    <footer class="ps-footer">
+      <div class="container">
+        <div class="ps-footer__top">
+          <a class="ps-logo" href="{% url 'core:index' %}"
+            ><img src="{% static 'img/raclogo1.png' %}" alt=""
+          /></a>
+          <div class="ps-footer__numbers">
+            <p>
+              <span><strong>{{count}}</strong> COMMUNITY MEMBERS</span
+              ><span><strong>{{project_count}}</strong> TOTAL JOBS POSTED</span>
+            </p>
+            <br />
+          </div>
+        </div>
+
+        <div class="ps-footer__center">
+          <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+              <aside class="widget widget_footer">
+                <h3 class="widget-title">Meet RAC</h3>
+                <ul>
+                  <li><a href="{% url 'services:about_us' %}">About us</a></li>
+                  <li>
+                    <a href="{% url 'services:services_index' %}"
+                      >Our services</a
+                    >
+                  </li>
+                  <li><a href="{% url 'core:contact' %}">Contact us</a></li>
+                </ul>
+              </aside>
+            </div>
+
+            <center>
+              <div
+                class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12"
+                style="margin-right: 200px; font-size: large"
+              >
+                <p>
+                  Millions of small businesses use <br />
+                  our developers to turn their ideas into reality
+                </p>
+                <a
+                  class="ps-btn ps-btn--gradient"
+                  href="{% url 'signup_user:signup_gen' %}"
+                  >Join our mission today</a
+                >
+              </div>
+            </center>
+          </div>
+        </div>
+        <div class="ps-footer__bottom">
+          <figure>
+            <ul class="ps-footer__nav"></ul>
+            <p>
+              &copy; 2023 <a href="#">RAC</a> - All Rights Reserved. Made by
+              <a href="#">Dhruti,Mira and Vishwa</a>
+            </p>
+          </figure>
+          <figure>
+            <div class="ps-footer__language">
+              <span>Language:</span>
+              <select class="ps-select">
+                <option value="1">English</option>
+              </select>
+            </div>
+            <ul class="ps-list--social">
+              <li>
+                <a href="#"><i class="fa fa-google-plus"></i></a>
+              </li>
+            </ul>
+          </figure>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Plugins-->
+    <script src="{% static 'plugins/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'plugins/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap4/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'plugins/masonry.pkgd.min.js'%}"></script>
+    <script src="{% static 'plugins/jquery-bar-rating/dist/jquery.barrating.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'plugins/select2/dist/js/select2.full.min.js' %}"></script>
+    <script src="{% static 'plugins/anime.min.js' %}"></script>
+    <script src="{% static 'plugins/wow.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

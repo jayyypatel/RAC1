@@ -1,0 +1,50 @@
+{% extends 'core/layout.html' %}
+{% load static %}
+
+{% block body %}
+
+<!--include search-sidebar-->
+<div style="padding-top: 170px;" class="ps-page--signin">
+  <div class="container">
+    <form class="ps-form--signin" action="{% url 'signup_user:login_user' %}" method="post">
+      {% csrf_token %}
+      <div class="ps-form__header">
+        <h3>Sign In</h3>
+        <p>Sign in now to Access Your Dashboard</p>
+      </div>
+      <div class="ps-form__content">
+        {% for message in messages %}
+    
+							  <div class="alert alert-danger">
+								  <a class="close" href="#" data-dismiss="alert">×</a>
+									 {{ message }}
+							  </div>
+						  
+		{% endfor %}
+        {% for fm in form %}
+        <div class="form-group">
+          {{ fm.label_tag }} {{ fm }}
+          <small class="text-danger"> {{ fm.errors|striptags }}</small>
+        </div>
+        {% endfor %}
+      
+
+        </div>
+        <div class="ps-form__actions">
+          <div class="ps-checkbox ps-checkbox--circle">
+            <input class="form-control" type="checkbox" id="newsletter" name="newsletters" />
+            <a style="margin-left: 350px;" href="{% url 'signup_user:password_reset' %}">Forgot password</a>
+          </div>
+        </div>
+        <div class="ps-form__footer">
+          <input type="submit" value="Login" class="ps-btn ps-btn--fullwidth ps-btn--gradient" style="background-color: #544cf9;">
+          <p>Don't have an account?<a href="{% url 'signup_user:signup_gen' %}"> Sign up now!</a></p>
+        </div>
+        
+    </form>
+    
+  </div>
+</div>
+
+{% endblock %}
+<!-- signup-employee.html -->

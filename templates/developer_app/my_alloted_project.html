@@ -1,0 +1,70 @@
+{% extends 'core/layout.html' %}
+{% load static %}
+
+{% block body %}
+
+<div style="padding-top: 90px;" class="ps-section--sidebar ps-listing"></div>
+<div class="ps-section--sidebar ps-listing">
+    <div class="container">
+        <div class="ps-section__container">
+            <div class="ps-section__content">
+                
+                <div class="ps-section__items">
+                   
+                    <br>
+                    {% if alloted_project %}
+                    {% for p in alloted_project %} 
+                    <div class="ps-freelancer ">
+                        <div class="ps-freelancer__thumbnail"><img src="{{p.alloted_project_id_fk.get_image_url_fk}}" alt=""></div>
+                        <div class="ps-freelancer__content">
+                            <figure>
+                                <figcaption>Alloted Project : {{p.alloted_project_id_fk.project_title}}</figcaption>
+                                <p>Alloted Price : {{p.alloted_price}}</p>
+                                project status : {{p.alloted_project_status}}
+                                {% ifequal p.alloted_project_status True %}
+                                {% ifequal p.paid True %}
+                                <a class="ps-btn ps-btn--outline" href="{% url 'services:genreport' p.id %}">Paid and Generate Report</a>
+                                {% else %}
+                                <a class="ps-btn ps-btn--outline" href="{% url 'services:payment' p.id %}">completed & payment remaining</a>   
+                                {% endifequal %}
+
+                                
+                                <!-- <a class="ps-btn ps-btn--outline" href="#">completed</a> -->
+                                {% else %}
+                                <a class="ps-btn ps-btn--outline" href="{% url 'developer_app:complete_project' p.id %}">complete Project</a>
+                                {% endifequal %}
+                            </figure>
+                            <p><strong>Project Description : {{p.alloted_project_id_fk.project_description}} <br> Job Choice : {{p.alloted_project_id_fk.job_choice}}
+                                    </strong></p>
+                            
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <h1>No alloted project</h1>
+                    {% endif %}
+                    
+
+                </div>
+                
+            </div>
+            <div class="ps-section__sidebar">
+                
+                <div class="widget widget_profile widget_feature-members">
+                    <h3 class="widget-title">Featured Members</h3>
+                    <figure>
+                        {% for vf in feature_members %}
+                        <div class="ps-block--company-tiny"><a class="ps-block__thumbnail" href="{% url 'emp_app:pr_client_profile' vf.id %}"><img
+                                    src="{{vf.get_client_image_url}}" alt=""></a><a class="ps-block__title"
+                                href="{% url 'emp_app:pr_client_profile' vf.id %}"> {{vf.company_name}}</a></div>
+                        {% endfor %}
+
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

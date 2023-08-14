@@ -1,0 +1,53 @@
+{% extends 'core/layout.html' %}
+{% load static %}
+
+{% block body %}
+
+<div style="padding-top: 90px;" class="ps-section--sidebar ps-listing"></div>
+<div class="ps-section--sidebar ps-listing">
+    <div class="container">
+        <div class="ps-section__container">
+            <div class="ps-section__content">
+                
+                <div class="ps-section__items">
+                    
+                    <br>
+                    {% for p in pr_project %} 
+                    <div class="ps-freelancer ">
+                        <div class="ps-freelancer__thumbnail"><img src="{{p.get_image_url_fk}}" alt=""></div>
+                        <div class="ps-freelancer__content">
+                            <figure>
+                                <figcaption>{{p.project_title}}</figcaption>
+                                <p> Price range : {{p.price_range}}</p><a class="ps-btn ps-btn--outline" href="{% url 'emp_app:prti_project_request' p.id %}">see applied</a>
+                            </figure>
+                            <p><strong>Project Description : {{p.project_description}} <br> Job Choice : {{p.job_choice}}
+                                <br><figure> <figcaption><a href="{% url 'emp_app:delete_project' p.id %}">DELETE</a></figcaption> </figure>
+                                    </strong></p>
+                            
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+                
+            </div>
+            <div class="ps-section__sidebar">
+                
+                <div class="widget widget_profile widget_feature-members">
+                    <h3 class="widget-title">Featured Members</h3>
+                    <figure>
+                        {% for vf in feature_members %}
+                        <div class="ps-block--company-tiny"><a class="ps-block__thumbnail" href="{% url 'emp_app:pr_client_profile' vf.id %}"><img
+                                    src="{{vf.get_client_image_url}}" alt=""></a><a class="ps-block__title"
+                                href="{% url 'emp_app:pr_client_profile' vf.id %}"> {{vf.company_name}}</a></div>
+                        {% endfor %}
+
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'core/layout.html' %}
+{% load static %}
+
+{% block body %}
+
+<!--include search-sidebar-->
+<div style="padding-top: 90px;" class="ps-page">
+    <div class="ps-contact-intro bg--cover" data-background="{% static 'img/bg/pages/contact.jpg' %}">
+        <div class="container">
+            <div class="ps-section__header">
+                <p>THE BEST <br /> FREELANCER & <br /> NETWORK</p>
+            </div>
+            <div class="ps-section__content">
+                <h3>Contact R.A.C</h3>
+                <p>Where the world meets startups. Millions of small businesses use Freelancer to turn their ideas into
+                    reality</p>
+            </div>
+        </div>
+    </div>
+    <div class="ps-about-business ps-contact-us">
+        <div class="container">
+            <figure>
+                <figcaption><small>CONTACT US</small> R.A.C introduction</figcaption>
+                <div class="ps-contact__info">
+                    <p>Browse our directory of service providers, or <a href="#">post a request </a> and have providers
+                        respond to you directly. If you'd like to offer your own services, <a href="#">sign up
+                            today.</a></p>
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 ">
+                            <div class="ps-block--icon-2"><i class="fas fa-phone-alt"></i>
+                                <h5>Phone</h5>
+                                <p>(+91) 8160301106 <br /> (+91) 9898925743 <br /> (+91) 7490869339</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 ">
+                            <div class="ps-block--icon-2"><i class="far fa-map-marker-alt"></i>
+                                <h5>Address</h5>
+                                <p>Safal Pegasus,Prahlad nagar,Ahemdabad</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 ">
+                            <div class="ps-block--icon-2"><i class="far fa-envelope"></i>
+                                <h5>Address</h5>
+                                <p>rentacoderproject2022@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </figure>
+            <figure>
+                <figcaption><small>SEND US A MESSAGE</small> Get in touch with us</figcaption>
+                <form class="ps-form--contact" action="." method="POST">
+                    <p>we are happy to answer any questions you might have, explore potential partnerships and receive
+                        requests from interested affiliates. Simply choose from one of the options of getting in touch
+                        with us below.</p>
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 ">
+                            <div class="form-group">
+                                {{form.name}}
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 ">
+                            <div class="form-group">
+                                {{form.email_id}}
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
+                            <div class="form-group">
+                                {{form.subject}}
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                            <div class="form-group">
+                                {{form.message}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ps-form__submit">
+                        <button class="ps-btn">Send</button>
+                    </div>
+                </form>
+            </figure>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

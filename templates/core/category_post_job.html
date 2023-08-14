@@ -1,0 +1,49 @@
+{% extends 'core/layout.html' %}
+{% load static %}
+
+{% block body %}
+
+<div style="padding-top: 80px;" class="ps-page">
+    <div class="ps-section--sidebar ps-layout">
+        <div class="container">
+            <div class="ps-section__container">
+                <div class="ps-section__content">
+                    <form class="ps-form--post-a-job" action="." method="POST">
+                        <h3>Post a Job to RAC</h3>
+                       {% csrf_token %} 
+                        
+                       {% for fm in form %} 
+                       <div class="form-group">            
+                       {{ fm.label_tag }} {{ fm }} <small class="text-danger">{{fm.errors|striptags}}</small>
+                       </div>
+                       {% endfor %}
+                        
+                        <button class="ps-btn ps-btn--gradient" type="submit">Post Job Now</button>
+                    
+                    </form>
+                </div>
+
+                
+
+                <div class="ps-section__sidebar">
+                    <div class="widget widget_profile widget_feature-members">
+                        <h3 class="widget-title">Featured Members</h3>
+                        <figure>
+                        {% for vf in feature_members %}
+                        <div class="ps-block--company-tiny"><a class="ps-block__thumbnail" href="{% url 'emp_app:pr_client_profile' vf.id %}"><img
+                                    src="{{vf.get_client_image_url}}" alt=""></a><a class="ps-block__title"
+                                href="{% url 'emp_app:pr_client_profile' vf.id %}"> {{vf.company_name}}</a></div>
+                        {% endfor %}
+                           
+                        </figure>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

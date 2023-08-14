@@ -1,0 +1,45 @@
+{% load static %}
+
+<div class="ps-home-top-jobs gray">
+    <div class="container">
+      
+      <div class="ps-section__content">
+        <div class="row">
+          
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
+            
+            <!-- <div class="ps-section__header">
+              <h3>Brower top jobs</h3>
+            </div> -->
+            <center>
+            
+            <figure>
+
+              <figcaption  style="color: black;" ><center>Browse top jobs in category</center></figcaption>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 ">
+                  {% for Category in category_display %}
+                  <ul class="ps-list">
+                    <li><a href="{% url 'core:particular_cat' Category.id %}">{{Category.type}}</a></li>
+                  </ul>
+                  {% endfor %}
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
+                  {% for Category in category_display %}
+                  <ul class="ps-list">
+                    <li><a href="{% url 'core:particular_cat' Category.id %}">{{Category.type}}</a></li>
+                  </ul>
+                  {% endfor %}
+                  
+                </div>
+              </div>
+            </figure>
+            </center>
+          </div>
+        
+          
+        </div>
+      </div>
+    
+    </div>
+  </div>

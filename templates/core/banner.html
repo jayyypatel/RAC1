@@ -1,0 +1,20 @@
+{% load static %}
+
+
+<div style="background-image: url('{% static 'img/banner/home-4/1.jpg' %}' );background-size: cover;height: 700px;padding-top: 190px; padding-left: 189px; padding-bottom: 39px;">
+    <form class="ps-form--home-find-job ps-form--top" action="{% url 'core:searchjobs' %}"
+                    method="GET">
+ 
+        <h1 style="color: #544cf9;">Rent A Coder <br /> </h1>
+        <h5 style="color: rgb(50, 50, 214);"> I.T. At Your Door Steps
+        </h5>
+        <div class="form-group "><i class="fa fa fa-search"></i>
+            
+            <input class="form-control" type="text" name='q' placeholder="Enter job title...">
+            <button class="ps-btn ps-btn--gradient" type="submit">Find Job</button>
+        </div>
+        <p style="color: rgb(50, 50, 214);">Update the latest jobs and announcements from R.A.C.</p>
+    </form>
+</div>
+
+

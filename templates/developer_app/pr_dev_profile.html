@@ -1,0 +1,105 @@
+{% extends 'core/layout.html' %}
+{% load static %}
+
+{% block body %}
+<div class="ps-blog ps-blog--list">
+    <div class="container">
+        <div class="ps-blog__header">
+            
+            <div class="ps-block--about-author">
+                <div class="ps-block__header">
+                    <h4>About {{ profile_dev.user_id_fk }}</h4>                                    
+                </div>
+
+
+
+                <div class="ps-block__image"><img src="{{profile_dev.get_developer_image_url}}" alt=""></div>
+                <div class="ps-block__content">
+                    <h5></h5>
+                    <p><strong>Qualification Description :</strong> {{profile_dev.qualification}} <br> <strong>Worked at @ </strong>{{profile_dev.past_project}}</p>
+                    <ul class="ps-list--social simple">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ps-blog__content">
+        {% if completed_pro %}
+        <br>
+            <center><p><strong>Completed Projects :</strong></p></center>
+        <br>
+        {% for ic in completed_pro %}
+        <div class="ps-post--list">
+            <div class="ps-post__thumbnail bg--cover" data-background="{% static 'img/blog/blog-list/1.jpg' %}"><a
+                    class="ps-post__overlay" href="#"></a><img src="{% static 'img/blog/blog-list/1.jpg' %}" alt=""></div>
+            <div class="ps-post__content">
+                <div class="ps-post__header">
+                    <p>{{ic.alloted_Date}}</p><a class="ps-post__title" href="#">{{ic.alloted_project_id_fk.project_title}}</a>
+                    <p>{{pr_project.category_id_fk}}</p>
+                </div>
+                <div class="ps-post__desc">
+                    <p>{{pr_project.project_description}}</p>
+                </div>
+                <div class="ps-post__footer">
+                    <ul class="ps-list--social simple">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul><span><a href="#"> {{pr_profile.user_id_fk.first_name}}</a></span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+            <br>
+            <center><p><strong>No Completed Projects</strong></p></center>
+            <br>
+        {% endif %}
+        
+    </div>
+<!-- running project -->
+    <div class="ps-blog__content">
+        {% if running_pro %}
+        <br>
+            <center><p><strong>Running Projects :</strong></p></center>
+        <br>
+        {% for ir in running_pro %}
+        <div class="ps-post--list">
+            <div class="ps-post__thumbnail bg--cover" data-background="{% static 'img/blog/blog-list/1.jpg' %}"><a
+                    class="ps-post__overlay" href="#"></a><img src="{% static 'img/blog/blog-list/1.jpg' %}" alt=""></div>
+            <div class="ps-post__content">
+                <div class="ps-post__header">
+                    <p>{{ir.alloted_Date}}</p><a class="ps-post__title" href="#">{{ir.alloted_project_id_fk.project_title}}</a>
+                    <p>{{pr_project.category_id_fk}}</p>
+                </div>
+                <div class="ps-post__desc">
+                    <p>{{pr_project.project_description}}</p>
+                </div>
+                <div class="ps-post__footer">
+                    <ul class="ps-list--social simple">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul><span><a href="#"> {{pr_profile.user_id_fk.first_name}}</a></span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+        {% else %}
+            <br>
+            <center><p><strong>No Running Projects</strong></p></center>
+        {% endif %}
+        
+    </div>
+    
+    </div>
+</div>
+{% endblock %}

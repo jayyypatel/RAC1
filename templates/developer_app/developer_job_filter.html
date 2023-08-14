@@ -1,0 +1,48 @@
+{% load static %}
+
+{% block body %}
+
+<div class="ps-section--sidebar ps-listing">
+    <div class="container">
+        <div class="ps-section__container">
+            <div class="ps-section__content">
+                
+                <div class="ps-section__items">
+                    <h4 class="ps-heading--2 mb-40">{{count}} results</h4>
+                    {% for freelancer in all_freelancer %} 
+                    <div class="ps-freelancer ">
+                        <div class="ps-freelancer__thumbnail"><img src="{{freelancer.get_developer_image_url}}" alt=""></div>
+                        <div class="ps-freelancer__content">
+                            <figure>
+                                <figcaption>{{freelancer.user_id_fk}}</figcaption>
+                                <p>{{freelancer.location}} </p><a class="ps-btn ps-btn--outline" href="{%url 'developer_app:pr_dev_profile' freelancer.id %}"> see Profile</a>
+                            </figure>
+                            <p><strong>{{freelancer.your_skill}} . {{freelancer.work_experience}} . {{freelancer.working_hours}}
+                                    </strong></p>
+                            
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+                
+            </div>
+            <!-- <div class="ps-section__sidebar">
+                <div class="widget widget_profile widget_feature-members">
+                    <h3 class="widget-title">Featured Clients</h3>
+                    <figure>
+                        {% for vf in feature_members %}
+                        <div class="ps-block--company-tiny"><a class="ps-block__thumbnail" href="{% url 'emp_app:pr_client_profile' vf.id %}"><img
+                                    src="{{vf.get_client_image_url}}" alt=""></a><a class="ps-block__title"
+                                href="{% url 'emp_app:pr_client_profile' vf.id %}"> {{vf.company_name}}</a></div>
+                        {% endfor %}
+
+                    </figure>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

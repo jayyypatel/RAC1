@@ -1,0 +1,61 @@
+{% load static %}
+
+<div class="ps-home-find-job-2">
+    <div class="container">
+        <div class="ps-section__header">
+            <p>Update the latest jobs and announcements from RAC.<a href="{% url 'signup_user:signup_gen' %}"> Join us today</a></p>
+        </div>
+        <div class="ps-section__content">
+            <h3>Get it to your job</h3>
+            <p>Workable helps companies of all sizes hire at scale. Start today by requesting a demo or <br>posting a job for
+                free to discover how Workable can help you find and hire best Jobs.
+            </p>
+            <div class="ps-section__actions"><a class="ps-btn ps-btn--shadow ps-btn--white"
+                    href="{% url 'core:post_job' %}"><i class="fas fa-pencil-ruler"></i> Post a Job</a><a
+                    class="ps-btn ps-btn--shadow ps-btn--white" href="{% url 'core:job_list' %}"><i class="fal fa-books"></i> Job List</a>
+            </div>
+        </div>
+
+
+
+
+        <div class="ps-section__header">
+            <h3>Browse top Comapnies</h3>
+          </div>
+
+          <div class="ps-section__content">
+          
+          <figcaption>Browse top jobs by member</figcaption></br>
+
+        <figure>
+            <div class="ps-section__companies">
+                
+                <div class="owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="7000" data-owl-gap="0"
+                    data-owl-nav="false" data-owl-dots="false" data-owl-item="{{count}}" data-owl-item-xs="3" data-owl-item-sm="4"
+                    data-owl-item-md="6" data-owl-item-lg="7" data-owl-duration="1000" data-owl-mousedrag="off">
+                    {% for client in all_client %}
+
+                    <div class="ps-block--company-tiny"><a class="ps-block__thumbnail" href="{% url 'emp_app:pr_client_profile' client.id %}"><img
+                                src="{{client.get_client_image_url}}" alt="" style="height: 70px; width: 70px;"></a><a class="ps-block__title" href="#">
+                            {{client.company_name}}</a></div>
+                    
+                    {% endfor %}
+                    
+
+                </div>
+            </div>
+        </figure>
+          </div>
+
+
+
+
+
+          
+        <div class="ps-section__footer">
+            <h3>Need work done?</h3>
+            <p>we all want to be efficient in getting our work done all the time.
+                <br>And there are plenty of ways you can work toward being more productive in your day-to-day work.</p>
+        </div>
+    </div>
+</div>

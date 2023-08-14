@@ -1,0 +1,90 @@
+{% extends 'core/layout.html' %}
+{%load static%}
+
+{% block body %}
+
+<div style="padding-top: 90px;" class="ps-page">
+    <div class="ps-section--top bg--cover" data-background="{% static 'img/bg/pages/brow-employers.jpg' %}">
+        <div class="container">
+            <div class="ps-section__header">
+                <p>BROWSE <br /> Jobs</p>
+            </div>
+            <div class="ps-section__content">
+                <form class="ps-form--home-find-job ps-form--top" action="{% url 'core:searchjobs' %}"
+                    method="GET">
+                    <h1>Browse job on R.A.C </h1>
+                    <h5>Where the world meets startups. Millions of small businesses use <br /> Freelancer to turn their
+                        ideas into reality</h5>
+                    <div class="form-group"><i class="fa fa fa-search"></i>
+                        <input class="form-control" type="text" name='q' placeholder="Enter job title...">
+                        <button class="ps-btn ps-btn--gradient" type="submit">Find Job</button>
+                    </div>
+                    <p>Update the latest jobs and announcements from R.A.C.<a href="#"> Join us today</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="ps-section--sidebar ps-listing">
+        <div class="container">
+            <div class="ps-section__container">
+                <div class="ps-section__content">
+                    
+                    <div class="ps-section__items">
+                        <h4 class="ps-heading--2 mb-40">{{project_count}} results</h4>
+                        {% for project in all_project %}
+                        <div class="ps-job">
+                            <div class="ps-job__thumbnail"><a href="#"><img src="{{project.get_image_url_fk}}" alt=""></a>
+                            </div>
+                            <div class="ps-job__content"><a class="ps-job__title" href="#"> {{ project.project_title }}</a>
+                                <p>{{ project.client_id_fk }} </p>
+                                <p><strong>{{ project.skill_choice }},{{ project.category_id_fk }} </strong>{{ project.price_range }} , {{ project.job_choice }}
+                                </p>
+                                <p><i class="fa fa-map-marker"></i> {{ project.client_id_fk.location }}</p>
+                                <div class="ps-job__desc table-responsive">
+                                    <table class="table ps-table--job-desc">
+                                        <tbody>
+                                            <tr>
+                                                <td>Category</td>
+                                                <td>
+                                                    <p class="ps-highlight">{{ project.category_id_fk }}</p>
+                                                    <p>{{ project.job_choice }} · {{ project.category_id_fk }}</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Description</td>
+                                                <td>
+                                                    <p><strong>{{ project.project_description }}</strong></p><a
+                                                        class="ps-btn ps-btn--sm" href="{% url 'developer_app:applypg' project.id %}">Apply Now</a><a
+                                                        class="cancel" href="{% url 'core:index' %}">No, Skip</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                    </div>
+                    
+                </div>
+                <div class="ps-section__sidebar">
+                    
+                    <div class="widget widget_profile widget_feature-members">
+                        <h3 class="widget-title">Featured Members</h3>
+                        <figure>
+                        {% for vf in feature_members %}
+                        <div class="ps-block--company-tiny"><a class="ps-block__thumbnail" href="{% url 'emp_app:pr_client_profile' vf.id %}"><img
+                                    src="{{vf.get_client_image_url}}" alt=""></a><a class="ps-block__title"
+                                href="{% url 'emp_app:pr_client_profile' vf.id %}"> {{vf.company_name}}</a></div>
+                        {% endfor %}
+                           
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

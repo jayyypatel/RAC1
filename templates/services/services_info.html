@@ -1,0 +1,38 @@
+{% load static %}
+
+{% block body %}
+
+<div class="ps-page">
+    <div class="ps-services-introduction">
+      <div class="container">
+        <div class="ps-section__left">
+          <p>THE BEST <br /> SERVICES & <br /> SOLUTIONS</p>
+        </div>
+        <div class="ps-section__right">
+          <h5>SERVICES INTRODUCTION</h5>
+          <h3>R.A.C connecting startups</h3>
+          <p>Rent a coder deals with the various levels of project development and will account for time used in
+             phases viz analysis, design, coding, testing and implementation etc.
+             Hiring an expert in coding via rent a coder helps an employer find a committed individual with 
+             experience in the technicalities of a computer.</p>
+        </div>
+      </div>
+    </div>
+    <div class="ps-services-success bg--cover" data-background="{% static 'img/bg/pages/services-success.jpg' %}">
+      <div class="container">
+        <div class="ps-section__content">
+          <h3>We are your<strong>Success</strong></h3>
+
+          {% if user.is_authenticated %}
+          <a class="ps-btn ps-btn--outline ps-btn--lg"
+            href="{% url 'core:index' %}">Getstarted for free</a>
+          {% else %}
+          <a class="ps-btn ps-btn--outline ps-btn--lg"
+            href="{% url 'signup_user:signup_gen' %}">Getstarted for free</a>
+        
+          {% endif %}  
+          </div>
+      </div>
+    </div>
+
+{% endblock %}
